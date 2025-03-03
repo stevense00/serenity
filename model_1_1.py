@@ -10,4 +10,4 @@ xs = np.array([-1.0, 0.0, 1.0, 2.0, 3.0, 4.0], dtype=float)
 ys = np.array([-3.0, -1.0, 1.0, 3.0, 5.0, 7.0], dtype=float)
 
 model.fit(xs, ys, epochs=500)
-print(model.predict([10.0]))
+print(model.predict(np.array([10.0])))

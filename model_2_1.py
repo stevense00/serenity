@@ -1,11 +1,16 @@
 import tensorflow as tf
 
+gpus = tf.config.experimental.list_physical_devices('GPU')
+print(gpus)
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
+
 target_accuracy = 0.90
 
 class trainCB(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs={}):
         if(logs.get('accuracy')>target_accuracy):
-            print("\nReached " + str(target_accuracy*100) + "% accuracy, training stopped")
+            print("\nReached {}% accuracy at Epoch {}, training stopped".format((target_accuracy*100), epoch))
             self.model.stop_training = True
 
 callbacks = trainCB()
